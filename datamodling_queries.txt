@@ -1,0 +1,30 @@
+create database cloudcomputing;
+ create table busstop (id char(20),name char(100), lon char(20),lat char(20));
+ create table busline(id char(20),lineid char(100),stopid char(20),name char(100), lon char(20),lat char(20));
+ create table timetable(id char(20),timetableid char(20),lineid char(20),bus_vehicle_id char(20),startingid char(20),
+ startingpointname char(50), startlat char(20), startlon char(20), endingpointid char(20),endingpointname char(20)
+ , endingpointlat char(20),endingpoint char(20), departuretime char(20),arrivaltime char(20),numberofonboarding char(20), numberofdeboarding char(20), numberofcurrent char(20));
+ select * from stops;
+ 
+ LOAD DATA  INFILE 
+'C:\\Users\\tusha\\Documents\\dynamic-bus-scheduling\\google_transit\\trips.csv'
+INTO TABLE trips   
+FIELDS TERMINATED BY ',' lines terminated by '\r\n';
+create table stops(id int,trip_id char(20), arrival_time char(20), departure_time char(20), stop_id
+ char(20), stop_sequence char(20), stop_headsign char(20), pickup_type char(20), drop_off_type char(20), shape_dist_traveled
+char(20) );
+alter table timetable change column lineid  lineid char(50);
+delete from stops where pickup_type != 1 and drop_off_type != 1; 
+create table trips(route_id char(20), direction char(20), trip_id char(20));
+alter table stops add column route_id char(20);
+update stops,trips set stops.route_id= trips.route_id where stops.trip_id=trips.trip_id;
+update timetable set bus_vehicle_id=(select distinct trip_id from stops);
+select * from timetable ;
+select * from busline;
+select distinct trip_id from stops;
+insert into timetable(bus_vehicle_id) select distinct trip_id from stops;
+update timetable,stops set timetable.departuretime = stops.arrival_time where stops.drop_off_type=1 and timetable.bus_vehicle_id=stops.trip_id;
+select * from stops;
+update timetable,busstop set timetable.endingpointlat =busstop.lat, timetable.endingpoint=busstop.lon, timetable.endingpointname=busstop.name where timetable.endingpointid=busstop.id; 
+update timetable,busline set timetable.lineid=busline.lineid where timetable.startingid=busline.stopid;
+alter table timetable drop column timetableid;
