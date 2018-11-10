@@ -1,0 +1,32 @@
+[{
+"id":"1", 
+
+"clientid":"akshay",
+
+"lineid":"100 OAKS",
+
+"startingpointid":"MCC5_11",
+
+"startingpointname":"MUSIC CITY CENTRAL 5TH - BAY 11", 
+
+"startlat":"-86.781996", 
+
+"startlon":"36.166590", 
+
+"endingpointid":"100OAKS", 
+
+"endingpointname":"100 OAKS MALL", 
+
+"endingpointlat":"-86.762639", 
+
+"endingpointlong":"36.106851", 
+
+"departuretime":"6:18:00",
+
+"arrivaltime":"6:36:00",
+
+"startingtimetableentryindex":"NULL",
+
+"endingtimetableentryindex":"NULL"
+
+}]
