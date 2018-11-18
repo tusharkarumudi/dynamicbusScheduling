@@ -7,13 +7,13 @@ create database cloudcomputing;
  select * from stops;
  
  LOAD DATA  INFILE 
-'C:\\Users\\tusha\\Documents\\dynamic-bus-scheduling\\google_transit\\trips.csv'
-INTO TABLE trips   
+'C:\\Users\\tusha\\Documents\\dynamic-bus-scheduling\\google_transit\\stop_times.csv'
+INTO TABLE stops   
 FIELDS TERMINATED BY ',' lines terminated by '\r\n';
 create table stops(id int,trip_id char(20), arrival_time char(20), departure_time char(20), stop_id
  char(20), stop_sequence char(20), stop_headsign char(20), pickup_type char(20), drop_off_type char(20), shape_dist_traveled
 char(20) );
-alter table timetable change column lineid  lineid char(50);
+alter table stops change column id  id int unique auto_increment;
 delete from stops where pickup_type != 1 and drop_off_type != 1; 
 create table trips(route_id char(20), direction char(20), trip_id char(20));
 alter table stops add column route_id char(20);
@@ -23,8 +23,44 @@ select * from timetable ;
 select * from busline;
 select distinct trip_id from stops;
 insert into timetable(bus_vehicle_id) select distinct trip_id from stops;
+
+alter table timetable_document drop column route_id;
+
+update timetable_document,stops set timetable_document.route_id=stops.route_id where timetable_document.bus_vehicle_id=stops.trip_id; 
+update timetable_document,busline set timetable_document.line_id=busline.lineid where timetable_document.route_id=busline.id;
 update timetable,stops set timetable.departuretime = stops.arrival_time where stops.drop_off_type=1 and timetable.bus_vehicle_id=stops.trip_id;
-select * from stops;
 update timetable,busstop set timetable.endingpointlat =busstop.lat, timetable.endingpoint=busstop.lon, timetable.endingpointname=busstop.name where timetable.endingpointid=busstop.id; 
 update timetable,busline set timetable.lineid=busline.lineid where timetable.startingid=busline.stopid;
 alter table timetable drop column timetableid;
+select * from trips where trip_id=178250;
+create table testtimetable ;
+ SET SQL_SAFE_UPDATES = 0;
+  create index  bus_vehicle_id on timetable_document(bus_vehicle_id);
+  select * from stops;
+  select * from trips;
+  create table timetable_document(timetable_id int unique auto_increment, line_id char(50), bus_vehicle_id char(50));
+  insert into timetable_document (bus_vehicle_id) select distinct bus_vehicle_id from timetable_entries; 
+  select * from timetable_document;
+  create table timetable_entries(bus_vehicle_id char(50), starting_bus_stop_id char (80), stop_sequence char(50),
+  starting_bus_stop_name char(80), starting_bus_stop_point_lat char(50), starting_bus_stop_point_long char(50),
+  ending_bus_stop_id char (80), 
+  ending_bus_stop_name char(80), ending_bus_stop_point_lat char(50), ending_bus_stop_point_long char(50),
+  departure_datetime char(50), arrival_datetime char(50), total_time char(50) default 0, 
+  number_of_onboarding_passengers char(50) default 0,
+  number_of_deboarding_passengers char(50) default 0,
+  number_of_current_passengers char(50) default 0);
+  alter table timetable_entries drop column stop_sequence ;
+  insert into timetable_entries(starting_bus_stop_id,bus_vehicle_id,stop_sequence,departure_datetime)
+  select stop_id,trip_id,stop_sequence,arrival_time from stops;
+  select* from busstop;
+  select * from timetable_entries;
+  update timetable_entries, busstop set timetable_entries.ending_bus_stop_name=busstop.name, 
+  timetable_entries.ending_bus_stop_point_lat=busstop.lat,
+  timetable_entries.ending_bus_stop_point_long=busstop.lon where timetable_entries.ending_bus_stop_id=busstop.id;
+  update timetable_entries,stops set timetable_entries.ending_bus_stop_id=stops.stop_id, 
+  timetable_entries.arrival_datetime=stops.arrival_time where timetable_entries.bus_vehicle_id=stops.trip_id
+  and stops.stop_sequence=(timetable_entries.stop_sequence+1);
+  delete from timetable_entries where timetable_entries.ending_bus_stop_id is null or timetable_entries.ending_bus_stop_id="";
+  select * from busline;
+  select * from trips where trip_id='152982_merged_178732';
+  select * from timetable_document;
