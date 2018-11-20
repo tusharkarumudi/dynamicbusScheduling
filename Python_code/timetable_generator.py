@@ -815,8 +815,7 @@ def print_timetable(timetable, timetable_entries_control=False, travel_requests_
                 '- total_time:', timetable_entry.get('route').get('total_time'), \
                 '- number_of_onboarding_passengers:', timetable_entry.get('number_of_onboarding_passengers'), \
                 '- number_of_deboarding_passengers:', timetable_entry.get('number_of_deboarding_passengers'), \
-                '- number_of_current_passengers:', timetable_entry.get('number_of_current_passengers'), \
-                '- route:', timetable_entry.get('route'))
+                '- number_of_current_passengers:', timetable_entry.get('number_of_current_passengers'))
 
     if travel_requests_control:
         print ('- Travel Requests:')
