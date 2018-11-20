@@ -699,7 +699,7 @@ class MongodbDatabaseConnection(object):
             object_id=object_id,
             bus_line_id=bus_line_id
         )
-        print bus_line_document
+        print (bus_line_document)
 
     def print_bus_line_documents(self, object_ids=None, bus_line_ids=None, counter=None):
         """
@@ -722,13 +722,13 @@ class MongodbDatabaseConnection(object):
 
             for i in range(0, counter):
                 bus_line_document = bus_line_documents_list[i]
-                print bus_line_document
+                print (bus_line_document)
 
         else:
             for bus_line_document in bus_line_documents_list:
-                print bus_line_document
+                print (bus_line_document)
 
-        print 'number_of_bus_line_documents:', number_of_bus_line_documents
+        print ('number_of_bus_line_documents:', number_of_bus_line_documents)
 
     def print_bus_stop_document(self, object_id=None, osm_id=None, name=None, longitude=None, latitude=None):
         """
@@ -747,7 +747,7 @@ class MongodbDatabaseConnection(object):
             longitude=longitude,
             latitude=latitude
         )
-        print bus_stop_document
+        print (bus_stop_document)
 
     def print_bus_stop_documents(self, object_ids=None, osm_ids=None, names=None, counter=None):
         """
@@ -772,13 +772,13 @@ class MongodbDatabaseConnection(object):
 
             for i in range(0, counter):
                 bus_stop_document = bus_stop_documents_list[i]
-                print bus_stop_document
+                print (bus_stop_document)
 
         else:
             for bus_stop_document in bus_stop_documents_list:
-                print bus_stop_document
+                print (bus_stop_document)
 
-        print 'number_of_bus_stop_documents:', number_of_bus_stop_documents
+        print ('number_of_bus_stop_documents:', number_of_bus_stop_documents)
 
     def print_travel_request_document(self, object_id):
         """
@@ -790,7 +790,7 @@ class MongodbDatabaseConnection(object):
         travel_request_document = self.find_travel_request_document(
             object_id=object_id
         )
-        print travel_request_document
+        print (travel_request_document)
 
     def print_travel_request_documents(self, object_ids=None, client_ids=None, bus_line_ids=None,
                                        min_departure_datetime=None, max_departure_datetime=None,
@@ -821,13 +821,13 @@ class MongodbDatabaseConnection(object):
 
             for i in range(0, counter):
                 travel_request_document = travel_request_documents_list[i]
-                print travel_request_document
+                print (travel_request_document)
 
         else:
             for travel_request_document in travel_request_documents_list:
-                print travel_request_document
+                print (travel_request_document)
 
-        print 'number_of_travel_request_documents:', number_of_travel_request_documents
+        print ('number_of_travel_request_documents:', number_of_travel_request_documents)
 
     def print_timetable_documents(self, object_ids=None, timetable_ids=None, bus_line_ids=None, timetables_control=True,
                                   timetable_entries_control=False, travel_requests_control=False,
@@ -872,7 +872,7 @@ class MongodbDatabaseConnection(object):
                 event_id=event_id
             )
 
-        print traffic_event_document
+        print (traffic_event_document)
 
     def print_traffic_event_documents(self, traffic_event_documents=None, object_ids=None,
                                       event_ids=None, counter=None):
@@ -899,10 +899,10 @@ class MongodbDatabaseConnection(object):
 
             for i in range(0, counter):
                 traffic_event_document = traffic_event_documents[i]
-                print traffic_event_document
+                print (traffic_event_document)
 
         else:
             for traffic_event_document in traffic_event_documents:
-                print traffic_event_document
+                print (traffic_event_document)
 
-        print 'number_of_traffic_event_documents:', number_of_traffic_event_documents
+        print ('number_of_traffic_event_documents:', number_of_traffic_event_documents)
