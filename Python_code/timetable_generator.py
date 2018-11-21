@@ -133,14 +133,15 @@ def adjust_timetable_entries(timetable, ideal_departure_datetimes):
 
     for i in range(0, number_of_timetable_entries):
         timetable_entry = timetable_entries[i]
-        total_time = timetable_entry.get('route').get('total_time')
-        ideal_departure_datetime = ideal_departure_datetimes[i]
+        #total_time = timetable_entry.get('route').get('total_time')
+	total_time = 20 #assumption       
+	ideal_departure_datetime = ideal_departure_datetimes[i]
 
         if i == 0:
             departure_datetime = ideal_departure_datetime
         else:
             previous_departure_datetime = timetable_entries[i - 1].get('departure_datetime')
-            departure_datetime = previous_departure_datetime + timedelta(seconds=total_time)
+            departure_datetime = previous_departure_datetime + unicode(timedelta(seconds=total_time))
 
             # if potential_departure_datetime < ideal_departure_datetime:
             #     departure_datetime = ideal_departure_datetime
@@ -148,7 +149,7 @@ def adjust_timetable_entries(timetable, ideal_departure_datetimes):
             #     departure_datetime = potential_departure_datetime
 
         # departure_datetime = ceil_datetime_minutes(starting_datetime=departure_datetime)
-        arrival_datetime = departure_datetime + timedelta(seconds=total_time)
+        arrival_datetime = departure_datetime + unicode(timedelta(seconds=total_time)) #akshay changed
         timetable_entry['departure_datetime'] = departure_datetime
         timetable_entry['arrival_datetime'] = arrival_datetime
 
@@ -830,6 +831,267 @@ def print_timetable(timetable, timetable_entries_control=False, travel_requests_
             #     '- departure_datetime:', travel_request.get('departure_datetime'), \
             #     '- starting_timetable_entry_index:', travel_request.get('starting_timetable_entry_index'), \
             #     '- ending_timetable_entry_index:', travel_request.get('ending_timetable_entry_index')
+
+
+def calculate_waiting_time_of_travel_request_in_seconds(travel_request, timetable_entries):
+    """
+    Calculate the waiting time (in seconds) of a travel request.
+
+    :param travel_request: travel_request_document
+
+    :param timetable_entries: [{
+               'starting_bus_stop': {'_id', 'osm_id', 'name', 'point': {'longitude', 'latitude'}},
+               'ending_bus_stop': {'_id', 'osm_id', 'name', 'point': {'longitude', 'latitude'}},
+               'departure_datetime', 'arrival_datetime', 'total_time', 'number_of_onboarding_passengers',
+               'number_of_deboarding_passengers', 'number_of_current_passengers'}]
+
+    :return: waiting_time_in_seconds (float)
+    """
+    departure_datetime_of_travel_request = travel_request.get('departure_datetime')
+    departure_datetime_of_travel_request_in_seconds = datetime_to_seconds(
+        provided_datetime=departure_datetime_of_travel_request
+    )
+    starting_timetable_entry_index = travel_request.get('starting_timetable_entry_index')
+    corresponding_timetable_entry = timetable_entries[starting_timetable_entry_index]
+    departure_datetime_of_timetable = corresponding_timetable_entry.get('departure_datetime')
+    departure_datetime_of_timetable_in_seconds = datetime_to_seconds(
+        provided_datetime=departure_datetime_of_timetable
+    )
+    waiting_time_in_seconds = abs(departure_datetime_of_timetable_in_seconds -
+                                  departure_datetime_of_travel_request_in_seconds)
+
+    return waiting_time_in_seconds
+
+
+def calculate_average_waiting_time_of_timetable_in_seconds(timetable):
+    """
+    Calculate the average waiting time of a timetable in seconds.
+
+    :param timetable: timetable_document
+    :return: average_waiting_time_in_seconds (float)
+    """
+    timetable_entries = timetable.get('timetable_entries')
+    travel_requests = timetable.get('travel_requests')
+
+    number_of_passengers = 1
+
+    if(travel_requests is not None):
+    	number_of_passengers = len(travel_requests)
+    total_waiting_time_in_seconds = 0
+
+    if(travel_requests is not None):	
+	    for travel_request in travel_requests:
+		waiting_time_of_travel_request_in_seconds = calculate_waiting_time_of_travel_request_in_seconds(
+		    travel_request=travel_request,
+		    timetable_entries=timetable_entries
+		)
+		total_waiting_time_in_seconds += waiting_time_of_travel_request_in_seconds
+
+    average_waiting_time_in_seconds = total_waiting_time_in_seconds / number_of_passengers
+    return average_waiting_time_in_seconds
+
+
+def calculate_average_waiting_time_of_timetables_in_seconds(timetables):
+    """
+    Calculate the average waiting time of a list of timetables in seconds.
+
+    :param timetables: [timetable_document]
+    :return: average_waiting_time_in_seconds (float)
+    """
+    average_waiting_time_in_seconds = -1
+    total_waiting_time_in_seconds = 0
+    number_of_timetables = len(timetables)
+
+    if number_of_timetables > 0:
+        for timetable in timetables:
+            total_waiting_time_in_seconds += calculate_average_waiting_time_of_timetable_in_seconds(
+                timetable=timetable
+            )
+        average_waiting_time_in_seconds = total_waiting_time_in_seconds / number_of_timetables
+
+    return average_waiting_time_in_seconds
+
+
+def sort_timetables_by_starting_datetime(timetables):
+    """
+    Sort timetables by their starting_datetime.
+
+    :param timetables: [timetable_document]
+    :return: None (Updates timetables)
+    """
+    starting_datetimes = get_starting_datetimes_of_timetables(timetables=timetables)
+    quicksort(list_to_be_sorted=timetables, comparison_list=starting_datetimes, low=0, high=len(timetables)-1)
+
+
+def get_starting_datetime_of_timetable(timetable):
+    """
+    Get the starting_datetime of a timetable, which corresponds to
+    the departure_datetime of the first timetable entry.
+
+    :param timetable: timetable_document
+    :return: starting_datetime_of_timetable: datetime
+    """
+    timetable_entries = timetable.get('timetable_entries')
+    starting_timetable_entry = timetable_entries[0]
+    starting_datetime_of_timetable = starting_timetable_entry.get('departure_datetime')
+    return starting_datetime_of_timetable
+
+def quicksort(list_to_be_sorted, comparison_list, low, high):
+    if low < high:
+        p = partition(list_to_be_sorted=list_to_be_sorted, comparison_list=comparison_list, low=low, high=high)
+        quicksort(list_to_be_sorted=list_to_be_sorted, comparison_list=comparison_list, low=low, high=p-1)
+        quicksort(list_to_be_sorted=list_to_be_sorted, comparison_list=comparison_list, low=p+1, high=high)
+
+def partition(list_to_be_sorted, comparison_list, low, high):
+    pivot = comparison_list[high]
+    i = low
+
+    for j in range(low, high):
+        if comparison_list[j] <= pivot:
+            swap(l=list_to_be_sorted, first=i, second=j)
+            swap(l=comparison_list, first=i, second=j)
+            i += 1
+
+    swap(l=list_to_be_sorted, first=i, second=high)
+    swap(l=comparison_list, first=i, second=high)
+    return i
+
+def estimate_number_of_bus_vehicles_for_timetables(timetables):
+    """
+    Estimate the required number of bus_vehicles, in order to serve a list of timetables.
+
+    :param timetables: [timetable_document]
+    :return: number_of_bus_vehicles: int
+    """
+    bus_vehicles = []
+
+    for timetable in timetables:
+        correspond_bus_vehicle_to_timetable(bus_vehicles=bus_vehicles, timetable=timetable)
+
+    number_of_bus_vehicles = len(bus_vehicles)
+    return number_of_bus_vehicles
+
+def correspond_bus_vehicle_to_timetable(bus_vehicles, timetable):
+    """
+    Correspond a timetable to one of the existed bus_vehicles, if possible, otherwise add a new one.
+
+    bus_vehicle_document: {
+        'starting_datetime', 'ending_datetime'
+    }
+    timetable_document: {
+        '_id', 'bus_line_id',
+        'timetable_entries': [{
+            'starting_bus_stop': {'_id', 'osm_id', 'name', 'point': {'longitude', 'latitude'}},
+            'ending_bus_stop': {'_id', 'osm_id', 'name', 'point': {'longitude', 'latitude'}},
+            'departure_datetime', 'arrival_datetime', 'number_of_onboarding_passengers',
+            'number_of_deboarding_passengers', 'number_of_current_passengers',
+            'route': {'total_distance', 'total_time', 'node_osm_ids', 'points', 'edges',
+                      'distances_from_starting_node', 'times_from_starting_node',
+                      'distances_from_previous_node', 'times_from_previous_node'}}],
+        'travel_requests': [{
+            '_id', 'client_id', 'bus_line_id',
+            'starting_bus_stop': {'_id', 'osm_id', 'name', 'point': {'longitude', 'latitude'}},
+            'ending_bus_stop': {'_id', 'osm_id', 'name', 'point': {'longitude', 'latitude'}},
+            'departure_datetime', 'arrival_datetime',
+            'starting_timetable_entry_index', 'ending_timetable_entry_index'}]
+    }
+    :param bus_vehicles: [bus_vehicle_document]
+    :param timetable: timetable_document
+    :return: None (updates bus_vehicles)
+    """
+    corresponded = False
+    starting_datetime_of_timetable = get_starting_datetime_of_timetable(timetable=timetable)
+    ending_datetime_of_timetable = get_ending_datetime_of_timetable(timetable=timetable)
+
+    for bus_vehicle in bus_vehicles:
+        # starting_datetime_of_bus_vehicle = bus_vehicle.get('starting_datetime')
+        ending_datetime_of_bus_vehicle = bus_vehicle.get('ending_datetime')
+
+        if ending_datetime_of_bus_vehicle < starting_datetime_of_timetable:
+            bus_vehicle['starting_datetime'] = starting_datetime_of_timetable
+            bus_vehicle['ending_datetime'] = ending_datetime_of_timetable
+            corresponded = True
+            break
+
+    if not corresponded:
+        bus_vehicle = {
+            'starting_datetime': starting_datetime_of_timetable,
+            'ending_datetime': ending_datetime_of_timetable
+        }
+        bus_vehicles.append(bus_vehicle)
+
+
+def swap(l, first, second):
+    temp = l[first]
+    l[first] = l[second]
+    l[second] = temp
+
+def get_ending_datetime_of_timetable(timetable):
+    """
+    Get the ending_datetime of a timetable, which corresponds to
+    the arrival_datetime of the last timetable entry.
+
+    :param timetable: timetable_document
+    :return: None (Updates timetable)
+    """
+    timetable_entries = timetable.get('timetable_entries')
+    ending_timetable_entry = timetable_entries[len(timetable_entries) - 1]
+    ending_datetime_of_timetable = ending_timetable_entry.get('arrival_datetime')
+    return ending_datetime_of_timetable
+
+
+def calculate_average_number_of_travel_requests_in_timetables(timetables):
+    """
+    Calculate the average number of travel_requests in timetables.
+
+    :param timetables: [timetable_document]
+    :return: average_number_of_travel_requests: float
+    """
+    average_number_of_travel_requests = 0
+    number_of_timetables = len(timetables)
+
+    if number_of_timetables > 0:
+        total_number_of_travel_requests = calculate_total_number_of_travel_requests_in_timetables(
+            timetables=timetables
+        )
+        average_number_of_travel_requests = total_number_of_travel_requests / number_of_timetables
+
+    return average_number_of_travel_requests
+
+
+def calculate_total_number_of_travel_requests_in_timetables(timetables):
+    """
+    Calculate the total number of travel_requests in timetables.
+
+    :param timetables: [timetable_document]
+    :return: total_number_of_travel_requests: int
+    """
+    total_number_of_travel_requests = 0
+
+    for timetable in timetables:
+        travel_requests = timetable.get('travel_requests')
+	if(travel_requests is not None):
+        	number_of_travel_requests_of_timetable = len(travel_requests)
+        	total_number_of_travel_requests += number_of_travel_requests_of_timetable
+
+    return total_number_of_travel_requests
+
+
+
+def get_starting_datetimes_of_timetables(timetables):
+    """
+    Retrieve a list containing the starting_datetimes of timetables.
+
+    :param timetables: [timetable_document]
+    :return: starting_datetimes: datetime
+    """
+    starting_datetimes = []
+
+    for timetable in timetables:
+        starting_datetime = get_starting_datetime_of_timetable(timetable=timetable)
+        starting_datetimes.append(starting_datetime)
+
+    return starting_datetimes
 
 
 def print_timetables(timetables, timetables_control=False, timetable_entries_control=False,
