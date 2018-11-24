@@ -26,8 +26,6 @@ def update_entries_of_timetable(timetable):
     :return: None (Updates timetable)
     """
     timetable_entries = timetable.get('timetable_entries')
-    print("timetableentries")
-    print(timetable_entries)
     number_of_timetable_entries = len(timetable_entries)
     ideal_departure_datetimes = [timetable_entry.get('departure_datetime') for timetable_entry in timetable_entries]
     # total_times = [intermediate_route.get('total_time') for intermediate_route in intermediate_routes]

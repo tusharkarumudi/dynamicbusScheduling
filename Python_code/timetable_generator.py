@@ -279,6 +279,30 @@ def clear_number_of_passengers_of_timetable(timetable):
         timetable_entry['number_of_deboarding_passengers'] = 0
         timetable_entry['number_of_current_passengers'] = 0
 
+
+def datetime_to_seconds(provided_datetime):
+    """
+    Convert a datetime to seconds.
+
+    :param provided_datetime: datetime
+    :return: seconds: float
+    """
+
+    print('date time is:')
+    print(provided_datetime)
+    
+    seconds = 0 #akshay
+    if(provided_datetime is not ''): #akshay
+	    seconds = (
+		provided_datetime.year * 31556926 +
+		provided_datetime.month * 2629743.83 +
+		provided_datetime.day * 86400 +
+		provided_datetime.hour * 3600 +
+		provided_datetime.minute * 60 +
+		provided_datetime.second
+	    )
+    return seconds
+
 def correspond_travel_requests_to_timetables(travel_requests, timetables):
     """
     Correspond each travel request to a timetable, so as to produce
@@ -847,13 +871,27 @@ def calculate_waiting_time_of_travel_request_in_seconds(travel_request, timetabl
 
     :return: waiting_time_in_seconds (float)
     """
+
+
+    
+    print("travel req")
+    print(travel_request)
     departure_datetime_of_travel_request = travel_request.get('departure_datetime')
+    print("dep time")
+    print(departure_datetime_of_travel_request)
+    
     departure_datetime_of_travel_request_in_seconds = datetime_to_seconds(
         provided_datetime=departure_datetime_of_travel_request
     )
     starting_timetable_entry_index = travel_request.get('starting_timetable_entry_index')
     corresponding_timetable_entry = timetable_entries[starting_timetable_entry_index]
     departure_datetime_of_timetable = corresponding_timetable_entry.get('departure_datetime')
+
+    print("printing timetable entry")
+    print(corresponding_timetable_entry)
+    print("dep time")
+    print(departure_datetime_of_timetable)
+
     departure_datetime_of_timetable_in_seconds = datetime_to_seconds(
         provided_datetime=departure_datetime_of_timetable
     )
