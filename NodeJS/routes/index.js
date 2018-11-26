@@ -168,13 +168,17 @@ MongoClient.connect(url, function(err, client) {
             // console.log(minimumTime)
             totalWaitingTime = totalWaitingTime+minimumTime;
         }
+        client.close();
         var AverageWaitingTime = totalWaitingTime/totalNumberOfRequests;
         console.log(AverageWaitingTime);
-        if(AverageWaitingTime >= 1500)
+        if(AverageWaitingTime >= 1500) {
             console.log("scheduling a bus");
-        else
+            //dynamicBusData("9","30");
+        }
+        else {
             console.log("Bus is not Scheduled")
-
+            dynamicBusData("9","30");
+        }
     })
 });
 
@@ -243,6 +247,55 @@ function FindMinimumWaitingTimes(WaitingTimes)
         }
     }
     return minimum;
+}
+
+function dynamicBusData(NewStartHour, NewStartMinute){
+    var NewStartHour = "9";
+    var NewStartMinute = "30"
+    //var stopArray = ["100OAKS", "5AVGAYNN", "6AOAKSN", "6THLAFNN", "7AVCHUSN", "7AVCOMSN", "7AVUNISM", "8ABRONM", "8ABRONN", "8ABROSN"]
+    var timeDiff = ["0", "15", "5", "5", "5", "5", "10", "11", "4", "15"]
+    var template = [
+        {
+            "LineID": "100OAKS",
+            "CountOfBuses": "1",
+            "route": ["100OAKS", "5AVGAYNN", "6AOAKSN", "6THLAFNN", "7AVCHUSN", "7AVCOMSN", "7AVUNISM", "8ABRONM", "8ABRONN", "8ABROSN"],
+            "NewArrivingTimes":["9.30"]
+        }
+    ];
+
+    var NewArrivingTimes = [];
+
+    for(var i in timeDiff)
+    {
+        NewStartMinute = parseInt(timeDiff[i]) + parseInt(NewStartMinute);
+        // console.log(timeDiff[i]);
+        // console.log(NewStartMinute);
+        //console.log(NewStartMinute);
+        if(NewStartMinute < 60)
+        {
+            NewArrivingTimes.push(NewStartHour+":"+NewStartMinute);
+        }
+        else
+        {
+            var hh = parseInt(parseInt((NewStartMinute)/60)+parseInt(NewStartHour));
+            var mm = parseInt(parseInt(NewStartMinute)%60);
+            NewArrivingTimes.push(hh+":"+mm);
+        }
+
+    }
+    //console.log(NewArrivingTimes);
+    template[0].NewArrivingTimes = NewArrivingTimes;
+    console.log("template is:");
+    console.log(template);
+    //console.log(template);
+    MongoClient.connect(url, function(err, client){
+        const dbd = client.db(dbName).collection('DynamicBusData');
+        dbd.insertMany(template, function (err, res) {
+            if (err) throw err;
+            console.log("Number of documents inserted: " + res.insertedCount);
+            client.close()
+        });
+    });
 }
 
 module.exports = router;
