@@ -171,13 +171,25 @@ MongoClient.connect(url, function(err, client) {
         client.close();
         var AverageWaitingTime = totalWaitingTime/totalNumberOfRequests;
         console.log(AverageWaitingTime);
+
+
         if(AverageWaitingTime >= 1500) {
             console.log("scheduling a bus");
-            //dynamicBusData("9","30");
+
+            var currTime = new Date();
+            console.log(currTime);
+            console.log(currTime.getHours());
+            console.log(currTime.getMinutes());
+
+            var newHour = currTime.getHours();
+            dynamicBusData(newHour,"30");
+            //calculate new waiting times.
+
+
         }
         else {
             console.log("Bus is not Scheduled")
-            dynamicBusData("9","30");
+            //dynamicBusData("9","30");
         }
     })
 });
@@ -249,7 +261,8 @@ function FindMinimumWaitingTimes(WaitingTimes)
     return minimum;
 }
 
-function dynamicBusData(NewStartHour, NewStartMinute){
+function dynamicBusData(NewStartHour, NewStartMinute)
+{
     var NewStartHour = "9";
     var NewStartMinute = "30"
     //var stopArray = ["100OAKS", "5AVGAYNN", "6AOAKSN", "6THLAFNN", "7AVCHUSN", "7AVCOMSN", "7AVUNISM", "8ABRONM", "8ABRONN", "8ABROSN"]
