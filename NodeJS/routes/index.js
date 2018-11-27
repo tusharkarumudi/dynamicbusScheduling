@@ -157,10 +157,17 @@ MongoClient.connect(url, function(err, client) {
         console.log("number of req");
         console.log(totalNumberOfRequests);
         var totalWaitingTime = 0;
+        var BusStopArrayEval = [];
+        var RequestedArrivingTimeArrayEval = [];
+
         for(i in items[0]["travel_request_document"]){
 
             var RequestedArrivingTime = items[0]["travel_request_document"][i].departure_datetime;
             BusStop = (items[0]["travel_request_document"][i].starting_bus_stop.stopid)
+
+            BusStopArrayEval.push(BusStop);
+            RequestedArrivingTimeArrayEval.push(RequestedArrivingTime);
+
             console.log("bus stop is:")
             console.log(BusStop);
             var ArrivingTimes = GetArrivingTimes(BusStop)
@@ -187,10 +194,9 @@ MongoClient.connect(url, function(err, client) {
             console.log(currTime.getMinutes());
 
             var newHour = currTime.getHours();
-            dynamicBusData(newHour,"30");
+            var NewTimes = dynamicBusData(newHour,"30");
             //calculate new waiting times.
-
-
+            CalculateNewWaitingTime(NewTimes,BusStopArrayEval,RequestedArrivingTimeArrayEval);
         }
         else {
             console.log("Bus is not Scheduled")
@@ -275,6 +281,18 @@ function FindMinimumWaitingTimes(WaitingTimes)
         }
     }
     return minimum;
+}
+
+function CalculateNewWaitingTime(NewTimes,BusStopArrayEval,RequestedArrivingTimeArrayEval)
+{
+  var NewArrivingTimes = NewTimes[0].NewArrivingTimes;
+  var routes = NewTimes[0].route;
+  var NewWaitingTime = 0;
+  for(var i in RequestedArrivingTimeArrayEval)
+  {
+    var indexOfNewArrivingTimes = routes.indexOf(BusStopArrayEval[i]);
+    NewWaitingTime = NewWaitingTime + Math.abs(GetSecondsFromTime(NewArrivingTimes[indexOfNewArrivingTimes])-GetSecondsFromTime(RequestedArrivingTimeArrayEval[i]));
+  }
 }
 
 function dynamicBusData(NewStartHour, NewStartMinute)
