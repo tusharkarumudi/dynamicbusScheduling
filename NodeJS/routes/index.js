@@ -6,7 +6,7 @@ const Alexa = require('ask-sdk-core')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Bus Scheduling' });
+    res.render('index', { title: 'Bus Scheduling' });
 });
 
 // use 'ask-sdk' if standard SDK module is installed
@@ -133,10 +133,10 @@ MongoClient.connect(url, function(err, client) {
     //call travel request get all data
 
     //for each travel request
-        //take its departure time and bus stop
-        //get arrival times of that bus stop from Timetable
-        //calculate minimum waiting time
-        //push minimum waiting time into array.
+    //take its departure time and bus stop
+    //get arrival times of that bus stop from Timetable
+    //calculate minimum waiting time
+    //push minimum waiting time into array.
 
     //calculate mean of waiting times.
     //compare this mean with the threshold.
@@ -154,12 +154,15 @@ MongoClient.connect(url, function(err, client) {
     trd.find().toArray(function (err, items) {
         //console.log(items[0])
         var totalNumberOfRequests= items[0]["travel_request_document"].length;
+        console.log("number of req");
+        console.log(totalNumberOfRequests);
         var totalWaitingTime = 0;
         for(i in items[0]["travel_request_document"]){
 
             var RequestedArrivingTime = items[0]["travel_request_document"][i].departure_datetime;
             BusStop = (items[0]["travel_request_document"][i].starting_bus_stop.stopid)
-            BusStop = "100OAKS"
+            console.log("bus stop is:")
+            console.log(BusStop);
             var ArrivingTimes = GetArrivingTimes(BusStop)
             //console.log(items[0]["travel_request_document"][i].departure_datetime)
             console.log("minimum time of minimum")
@@ -169,6 +172,8 @@ MongoClient.connect(url, function(err, client) {
             totalWaitingTime = totalWaitingTime+minimumTime;
         }
         client.close();
+        console.log("total waiting time is")
+        console.log(totalWaitingTime)
         var AverageWaitingTime = totalWaitingTime/totalNumberOfRequests;
         console.log(AverageWaitingTime);
 
@@ -201,7 +206,12 @@ function GetArrivingTimes(busStop) {
         //console.log(i)
         //    console.log(items[0][i])
         //console.log(items[0]["timetable"][i].busstop);
-        if(timetablecollectiondata[0]["timetable"][i].busstop == busStop) {
+        //console.log(timetablebus)
+
+        if(timetablecollectiondata[0]["timetable"][i].busstop == busStop)
+        {
+            console.log("timetable ka busstop");
+            console.log(timetablecollectiondata[0]["timetable"][i].busstop)
             arr_array = timetablecollectiondata[0]["timetable"][i].arr_time;
             break
             //console.log(arr_array[1])
@@ -236,6 +246,12 @@ function GetMinimumWaitingTimeForTravelRequest(RequestedArrivingTime, ArrivingTi
         WaitingTimes.push(Math.abs(ArrivingTimesInSeconds-RequestedArrivingTimeInSeconds));
     }
     var MinimumWaitingTime = FindMinimumWaitingTimes(WaitingTimes);
+    console.log("requested arriving times is:");
+    console.log(RequestedArrivingTime);
+    console.log("all ariving times are:");
+    console.log(ArrivingTimes);
+    console.log("minimum time is:");
+    console.log(MinimumWaitingTime/60);
     return MinimumWaitingTime;
 }
 
@@ -263,8 +279,8 @@ function FindMinimumWaitingTimes(WaitingTimes)
 
 function dynamicBusData(NewStartHour, NewStartMinute)
 {
-    var NewStartHour = "9";
-    var NewStartMinute = "30"
+    // var NewStartHour = "9";
+    // var NewStartMinute = "30"
     //var stopArray = ["100OAKS", "5AVGAYNN", "6AOAKSN", "6THLAFNN", "7AVCHUSN", "7AVCOMSN", "7AVUNISM", "8ABRONM", "8ABRONN", "8ABROSN"]
     var timeDiff = ["0", "15", "5", "5", "5", "5", "10", "11", "4", "15"]
     var template = [
