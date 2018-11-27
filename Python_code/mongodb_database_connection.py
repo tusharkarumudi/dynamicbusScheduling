@@ -3,7 +3,6 @@
 
 from bson import ObjectId
 from pymongo import MongoClient
-from timetable_generator import print_timetables
 
 class MongodbDatabaseConnection(object):
     
@@ -849,13 +848,7 @@ class MongodbDatabaseConnection(object):
             timetable_ids=timetable_ids,
             bus_line_ids=bus_line_ids
         )
-        print_timetables(
-            timetables=timetable_documents,
-            timetables_control=timetables_control,
-            timetable_entries_control=timetable_entries_control,
-            travel_requests_control=travel_requests_control,
-            counter=counter
-        )
+        
 
     def print_traffic_event_document(self, traffic_event_document=None, object_id=None, event_id=None):
         """
