@@ -1,0 +1,995 @@
+[{
+	"travel_request_document": [{
+
+			"_id": {
+				"$oid": "5bfe1cbe9b95e83384762e15"
+			},
+			"ending_bus_stop": {
+				"latitude": "36.164393",
+				"stopid": "7AVCOMSN",
+				"name": "CHARLOTTE AVE \u0026 8TH AVE N WB",
+				"longitude": "-86.785451"
+			},
+			"arrival_datetime": null,
+			"departure_datetime": "10:10:00",
+			"bus_line_id": "100 Oaks",
+			"ending_timetable_entry_index": null,
+			"starting_timetable_entry_index": null,
+			"starting_bus_stop": {
+				"latitude": "36.166590",
+				"stopid": "7AVCHUSN",
+				"name": "MUSIC CITY CENTRAL 5TH - BAY 11",
+				"longitude": "-86.781996"
+			}
+		},
+		{
+			"_id": {
+				"$oid": "5bfe1cbe9b95e83384762e16"
+			},
+			"ending_bus_stop": {
+				"latitude": "36.164393",
+				"stopid": "7AVUNISM",
+				"name": "CHARLOTTE AVE \u0026 8TH AVE N WB",
+				"longitude": "-86.785451"
+			},
+			"arrival_datetime": null,
+			"departure_datetime": "10:45:00",
+			"bus_line_id": "100 Oaks",
+			"ending_timetable_entry_index": null,
+			"starting_timetable_entry_index": null,
+			"starting_bus_stop": {
+				"latitude": "36.166590",
+				"stopid": "7AVCOMSN",
+				"name": "MUSIC CITY CENTRAL 5TH - BAY 11",
+				"longitude": "-86.781996"
+			}
+		},
+		{
+			"_id": {
+				"$oid": "5bfe1cbe9b95e83384762e17"
+			},
+			"ending_bus_stop": {
+				"latitude": "36.164393",
+				"stopid": "7AVCHUSN",
+				"name": "CHARLOTTE AVE \u0026 8TH AVE N WB",
+				"longitude": "-86.785451"
+			},
+			"arrival_datetime": null,
+			"departure_datetime": "10:12:00",
+			"bus_line_id": "100 Oaks",
+			"ending_timetable_entry_index": null,
+			"starting_timetable_entry_index": null,
+			"starting_bus_stop": {
+				"latitude": "36.166590",
+				"stopid": "6THLAFNN",
+				"name": "MUSIC CITY CENTRAL 5TH - BAY 11",
+				"longitude": "-86.781996"
+			}
+		},
+		{
+			"_id": {
+				"$oid": "5bfe1cbe9b95e83384762e18"
+			},
+			"ending_bus_stop": {
+				"latitude": "36.164393",
+				"stopid": "7AVCHUSN",
+				"name": "CHARLOTTE AVE \u0026 8TH AVE N WB",
+				"longitude": "-86.785451"
+			},
+			"arrival_datetime": null,
+			"departure_datetime": "10:05:00",
+			"bus_line_id": "100 Oaks",
+			"ending_timetable_entry_index": null,
+			"starting_timetable_entry_index": null,
+			"starting_bus_stop": {
+				"latitude": "36.166590",
+				"stopid": "6AOAKSN",
+				"name": "MUSIC CITY CENTRAL 5TH - BAY 11",
+				"longitude": "-86.781996"
+			}
+		},
+		{
+			"_id": {
+				"$oid": "5bfe1cbe9b95e83384762e19"
+			},
+			"ending_bus_stop": {
+				"latitude": "36.164393",
+				"stopid": "7AVCHUSN",
+				"name": "CHARLOTTE AVE \u0026 8TH AVE N WB",
+				"longitude": "-86.785451"
+			},
+			"arrival_datetime": null,
+			"departure_datetime": "10:15:00",
+			"bus_line_id": "100 Oaks",
+			"ending_timetable_entry_index": null,
+			"starting_timetable_entry_index": null,
+			"starting_bus_stop": {
+				"latitude": "36.166590",
+				"stopid": "6AOAKSN",
+				"name": "MUSIC CITY CENTRAL 5TH - BAY 11",
+				"longitude": "-86.781996"
+			}
+		},
+		{
+			"_id": {
+				"$oid": "5bfe1cbe9b95e83384762e1a"
+			},
+			"ending_bus_stop": {
+				"latitude": "36.164393",
+				"stopid": "8ABRONN",
+				"name": "CHARLOTTE AVE \u0026 8TH AVE N WB",
+				"longitude": "-86.785451"
+			},
+			"arrival_datetime": null,
+			"departure_datetime": "10:50:00",
+			"bus_line_id": "100 Oaks",
+			"ending_timetable_entry_index": null,
+			"starting_timetable_entry_index": null,
+			"starting_bus_stop": {
+				"latitude": "36.166590",
+				"stopid": "5AVGAYNN",
+				"name": "MUSIC CITY CENTRAL 5TH - BAY 11",
+				"longitude": "-86.781996"
+			}
+		},
+		{
+			"_id": {
+				"$oid": "5bfe1cbe9b95e83384762e1b"
+			},
+			"ending_bus_stop": {
+				"latitude": "36.164393",
+				"stopid": "8ABRONN",
+				"name": "CHARLOTTE AVE \u0026 8TH AVE N WB",
+				"longitude": "-86.785451"
+			},
+			"arrival_datetime": null,
+			"departure_datetime": "10:34:00",
+			"bus_line_id": "100 Oaks",
+			"ending_timetable_entry_index": null,
+			"starting_timetable_entry_index": null,
+			"starting_bus_stop": {
+				"latitude": "36.166590",
+				"stopid": "7AVUNISM",
+				"name": "MUSIC CITY CENTRAL 5TH - BAY 11",
+				"longitude": "-86.781996"
+			}
+		},
+		{
+			"_id": {
+				"$oid": "5bfe1cbe9b95e83384762e1c"
+			},
+			"ending_bus_stop": {
+				"latitude": "36.164393",
+				"stopid": "8ABRONM",
+				"name": "CHARLOTTE AVE \u0026 8TH AVE N WB",
+				"longitude": "-86.785451"
+			},
+			"arrival_datetime": null,
+			"departure_datetime": "10:47:00",
+			"bus_line_id": "100 Oaks",
+			"ending_timetable_entry_index": null,
+			"starting_timetable_entry_index": null,
+			"starting_bus_stop": {
+				"latitude": "36.166590",
+				"stopid": "7AVUNISM",
+				"name": "MUSIC CITY CENTRAL 5TH - BAY 11",
+				"longitude": "-86.781996"
+			}
+		},
+		{
+			"_id": {
+				"$oid": "5bfe1cbe9b95e83384762e1d"
+			},
+			"ending_bus_stop": {
+				"latitude": "36.164393",
+				"stopid": "7AVCHUSN",
+				"name": "CHARLOTTE AVE \u0026 8TH AVE N WB",
+				"longitude": "-86.785451"
+			},
+			"arrival_datetime": null,
+			"departure_datetime": "10:10:00",
+			"bus_line_id": "100 Oaks",
+			"ending_timetable_entry_index": null,
+			"starting_timetable_entry_index": null,
+			"starting_bus_stop": {
+				"latitude": "36.166590",
+				"stopid": "5AVGAYNN",
+				"name": "MUSIC CITY CENTRAL 5TH - BAY 11",
+				"longitude": "-86.781996"
+			}
+		},
+		{
+			"_id": {
+				"$oid": "5bfe1cbe9b95e83384762e1e"
+			},
+			"ending_bus_stop": {
+				"latitude": "36.164393",
+				"stopid": "6THLAFNN",
+				"name": "CHARLOTTE AVE \u0026 8TH AVE N WB",
+				"longitude": "-86.785451"
+			},
+			"arrival_datetime": null,
+			"departure_datetime": "10:13:00",
+			"bus_line_id": "100 Oaks",
+			"ending_timetable_entry_index": null,
+			"starting_timetable_entry_index": null,
+			"starting_bus_stop": {
+				"latitude": "36.166590",
+				"stopid": "6AOAKSN",
+				"name": "MUSIC CITY CENTRAL 5TH - BAY 11",
+				"longitude": "-86.781996"
+			}
+		},
+		{
+			"_id": {
+				"$oid": "5bfe1cbe9b95e83384762e1f"
+			},
+			"ending_bus_stop": {
+				"latitude": "36.164393",
+				"stopid": "7AVCOMSN",
+				"name": "CHARLOTTE AVE \u0026 8TH AVE N WB",
+				"longitude": "-86.785451"
+			},
+			"arrival_datetime": null,
+			"departure_datetime": "10:11:00",
+			"bus_line_id": "100 Oaks",
+			"ending_timetable_entry_index": null,
+			"starting_timetable_entry_index": null,
+			"starting_bus_stop": {
+				"latitude": "36.166590",
+				"stopid": "6AOAKSN",
+				"name": "MUSIC CITY CENTRAL 5TH - BAY 11",
+				"longitude": "-86.781996"
+			}
+		},
+		{
+			"_id": {
+				"$oid": "5bfe1cbe9b95e83384762e20"
+			},
+			"ending_bus_stop": {
+				"latitude": "36.164393",
+				"stopid": "7AVCOMSN",
+				"name": "CHARLOTTE AVE \u0026 8TH AVE N WB",
+				"longitude": "-86.785451"
+			},
+			"arrival_datetime": null,
+			"departure_datetime": "10:38:00",
+			"bus_line_id": "100 Oaks",
+			"ending_timetable_entry_index": null,
+			"starting_timetable_entry_index": null,
+			"starting_bus_stop": {
+				"latitude": "36.166590",
+				"stopid": "7AVCHUSN",
+				"name": "MUSIC CITY CENTRAL 5TH - BAY 11",
+				"longitude": "-86.781996"
+			}
+		},
+		{
+			"_id": {
+				"$oid": "5bfe1cbe9b95e83384762e21"
+			},
+			"ending_bus_stop": {
+				"latitude": "36.164393",
+				"stopid": "8ABRONN",
+				"name": "CHARLOTTE AVE \u0026 8TH AVE N WB",
+				"longitude": "-86.785451"
+			},
+			"arrival_datetime": null,
+			"departure_datetime": "10:38:00",
+			"bus_line_id": "100 Oaks",
+			"ending_timetable_entry_index": null,
+			"starting_timetable_entry_index": null,
+			"starting_bus_stop": {
+				"latitude": "36.166590",
+				"stopid": "7AVCOMSN",
+				"name": "MUSIC CITY CENTRAL 5TH - BAY 11",
+				"longitude": "-86.781996"
+			}
+		},
+		{
+			"_id": {
+				"$oid": "5bfe1cbe9b95e83384762e22"
+			},
+			"ending_bus_stop": {
+				"latitude": "36.164393",
+				"stopid": "8ABRONN",
+				"name": "CHARLOTTE AVE \u0026 8TH AVE N WB",
+				"longitude": "-86.785451"
+			},
+			"arrival_datetime": null,
+			"departure_datetime": "10:09:00",
+			"bus_line_id": "100 Oaks",
+			"ending_timetable_entry_index": null,
+			"starting_timetable_entry_index": null,
+			"starting_bus_stop": {
+				"latitude": "36.166590",
+				"stopid": "7AVCHUSN",
+				"name": "MUSIC CITY CENTRAL 5TH - BAY 11",
+				"longitude": "-86.781996"
+			}
+		},
+		{
+			"_id": {
+				"$oid": "5bfe1cbe9b95e83384762e23"
+			},
+			"ending_bus_stop": {
+				"latitude": "36.164393",
+				"stopid": "6THLAFNN",
+				"name": "CHARLOTTE AVE \u0026 8TH AVE N WB",
+				"longitude": "-86.785451"
+			},
+			"arrival_datetime": null,
+			"departure_datetime": "10:43:00",
+			"bus_line_id": "100 Oaks",
+			"ending_timetable_entry_index": null,
+			"starting_timetable_entry_index": null,
+			"starting_bus_stop": {
+				"latitude": "36.166590",
+				"stopid": "100OAKS",
+				"name": "MUSIC CITY CENTRAL 5TH - BAY 11",
+				"longitude": "-86.781996"
+			}
+		},
+		{
+			"_id": {
+				"$oid": "5bfe1cbe9b95e83384762e24"
+			},
+			"ending_bus_stop": {
+				"latitude": "36.164393",
+				"stopid": "6AOAKSN",
+				"name": "CHARLOTTE AVE \u0026 8TH AVE N WB",
+				"longitude": "-86.785451"
+			},
+			"arrival_datetime": null,
+			"departure_datetime": "10:55:00",
+			"bus_line_id": "100 Oaks",
+			"ending_timetable_entry_index": null,
+			"starting_timetable_entry_index": null,
+			"starting_bus_stop": {
+				"latitude": "36.166590",
+				"stopid": "5AVGAYNN",
+				"name": "MUSIC CITY CENTRAL 5TH - BAY 11",
+				"longitude": "-86.781996"
+			}
+		},
+		{
+			"_id": {
+				"$oid": "5bfe1cbe9b95e83384762e25"
+			},
+			"ending_bus_stop": {
+				"latitude": "36.164393",
+				"stopid": "8ABRONN",
+				"name": "CHARLOTTE AVE \u0026 8TH AVE N WB",
+				"longitude": "-86.785451"
+			},
+			"arrival_datetime": null,
+			"departure_datetime": "10:41:00",
+			"bus_line_id": "100 Oaks",
+			"ending_timetable_entry_index": null,
+			"starting_timetable_entry_index": null,
+			"starting_bus_stop": {
+				"latitude": "36.166590",
+				"stopid": "100OAKS",
+				"name": "MUSIC CITY CENTRAL 5TH - BAY 11",
+				"longitude": "-86.781996"
+			}
+		},
+		{
+			"_id": {
+				"$oid": "5bfe1cbe9b95e83384762e26"
+			},
+			"ending_bus_stop": {
+				"latitude": "36.164393",
+				"stopid": "7AVCOMSN",
+				"name": "CHARLOTTE AVE \u0026 8TH AVE N WB",
+				"longitude": "-86.785451"
+			},
+			"arrival_datetime": null,
+			"departure_datetime": "10:52:00",
+			"bus_line_id": "100 Oaks",
+			"ending_timetable_entry_index": null,
+			"starting_timetable_entry_index": null,
+			"starting_bus_stop": {
+				"latitude": "36.166590",
+				"stopid": "100OAKS",
+				"name": "MUSIC CITY CENTRAL 5TH - BAY 11",
+				"longitude": "-86.781996"
+			}
+		},
+		{
+			"_id": {
+				"$oid": "5bfe1cbe9b95e83384762e27"
+			},
+			"ending_bus_stop": {
+				"latitude": "36.164393",
+				"stopid": "8ABRONM",
+				"name": "CHARLOTTE AVE \u0026 8TH AVE N WB",
+				"longitude": "-86.785451"
+			},
+			"arrival_datetime": null,
+			"departure_datetime": "10:51:00",
+			"bus_line_id": "100 Oaks",
+			"ending_timetable_entry_index": null,
+			"starting_timetable_entry_index": null,
+			"starting_bus_stop": {
+				"latitude": "36.166590",
+				"stopid": "7AVUNISM",
+				"name": "MUSIC CITY CENTRAL 5TH - BAY 11",
+				"longitude": "-86.781996"
+			}
+		},
+		{
+			"_id": {
+				"$oid": "5bfe1cbe9b95e83384762e28"
+			},
+			"ending_bus_stop": {
+				"latitude": "36.164393",
+				"stopid": "8ABRONN",
+				"name": "CHARLOTTE AVE \u0026 8TH AVE N WB",
+				"longitude": "-86.785451"
+			},
+			"arrival_datetime": null,
+			"departure_datetime": "10:55:00",
+			"bus_line_id": "100 Oaks",
+			"ending_timetable_entry_index": null,
+			"starting_timetable_entry_index": null,
+			"starting_bus_stop": {
+				"latitude": "36.166590",
+				"stopid": "8ABRONM",
+				"name": "MUSIC CITY CENTRAL 5TH - BAY 11",
+				"longitude": "-86.781996"
+			}
+		},
+		{
+			"_id": {
+				"$oid": "5bfe1cbe9b95e83384762e29"
+			},
+			"ending_bus_stop": {
+				"latitude": "36.164393",
+				"stopid": "8ABRONM",
+				"name": "CHARLOTTE AVE \u0026 8TH AVE N WB",
+				"longitude": "-86.785451"
+			},
+			"arrival_datetime": null,
+			"departure_datetime": "10:47:00",
+			"bus_line_id": "100 Oaks",
+			"ending_timetable_entry_index": null,
+			"starting_timetable_entry_index": null,
+			"starting_bus_stop": {
+				"latitude": "36.166590",
+				"stopid": "100OAKS",
+				"name": "MUSIC CITY CENTRAL 5TH - BAY 11",
+				"longitude": "-86.781996"
+			}
+		},
+		{
+			"_id": {
+				"$oid": "5bfe1cbe9b95e83384762e2a"
+			},
+			"ending_bus_stop": {
+				"latitude": "36.164393",
+				"stopid": "8ABRONN",
+				"name": "CHARLOTTE AVE \u0026 8TH AVE N WB",
+				"longitude": "-86.785451"
+			},
+			"arrival_datetime": null,
+			"departure_datetime": "10:26:00",
+			"bus_line_id": "100 Oaks",
+			"ending_timetable_entry_index": null,
+			"starting_timetable_entry_index": null,
+			"starting_bus_stop": {
+				"latitude": "36.166590",
+				"stopid": "8ABRONM",
+				"name": "MUSIC CITY CENTRAL 5TH - BAY 11",
+				"longitude": "-86.781996"
+			}
+		},
+		{
+			"_id": {
+				"$oid": "5bfe1cbe9b95e83384762e2b"
+			},
+			"ending_bus_stop": {
+				"latitude": "36.164393",
+				"stopid": "8ABRONN",
+				"name": "CHARLOTTE AVE \u0026 8TH AVE N WB",
+				"longitude": "-86.785451"
+			},
+			"arrival_datetime": null,
+			"departure_datetime": "10:17:00",
+			"bus_line_id": "100 Oaks",
+			"ending_timetable_entry_index": null,
+			"starting_timetable_entry_index": null,
+			"starting_bus_stop": {
+				"latitude": "36.166590",
+				"stopid": "7AVCHUSN",
+				"name": "MUSIC CITY CENTRAL 5TH - BAY 11",
+				"longitude": "-86.781996"
+			}
+		},
+		{
+			"_id": {
+				"$oid": "5bfe1cbe9b95e83384762e2c"
+			},
+			"ending_bus_stop": {
+				"latitude": "36.164393",
+				"stopid": "7AVUNISM",
+				"name": "CHARLOTTE AVE \u0026 8TH AVE N WB",
+				"longitude": "-86.785451"
+			},
+			"arrival_datetime": null,
+			"departure_datetime": "10:12:00",
+			"bus_line_id": "100 Oaks",
+			"ending_timetable_entry_index": null,
+			"starting_timetable_entry_index": null,
+			"starting_bus_stop": {
+				"latitude": "36.166590",
+				"stopid": "6AOAKSN",
+				"name": "MUSIC CITY CENTRAL 5TH - BAY 11",
+				"longitude": "-86.781996"
+			}
+		},
+		{
+			"_id": {
+				"$oid": "5bfe1cbe9b95e83384762e2d"
+			},
+			"ending_bus_stop": {
+				"latitude": "36.164393",
+				"stopid": "8ABRONN",
+				"name": "CHARLOTTE AVE \u0026 8TH AVE N WB",
+				"longitude": "-86.785451"
+			},
+			"arrival_datetime": null,
+			"departure_datetime": "10:26:00",
+			"bus_line_id": "100 Oaks",
+			"ending_timetable_entry_index": null,
+			"starting_timetable_entry_index": null,
+			"starting_bus_stop": {
+				"latitude": "36.166590",
+				"stopid": "5AVGAYNN",
+				"name": "MUSIC CITY CENTRAL 5TH - BAY 11",
+				"longitude": "-86.781996"
+			}
+		},
+		{
+			"_id": {
+				"$oid": "5bfe1cbe9b95e83384762e2e"
+			},
+			"ending_bus_stop": {
+				"latitude": "36.164393",
+				"stopid": "8ABRONN",
+				"name": "CHARLOTTE AVE \u0026 8TH AVE N WB",
+				"longitude": "-86.785451"
+			},
+			"arrival_datetime": null,
+			"departure_datetime": "10:02:00",
+			"bus_line_id": "100 Oaks",
+			"ending_timetable_entry_index": null,
+			"starting_timetable_entry_index": null,
+			"starting_bus_stop": {
+				"latitude": "36.166590",
+				"stopid": "6THLAFNN",
+				"name": "MUSIC CITY CENTRAL 5TH - BAY 11",
+				"longitude": "-86.781996"
+			}
+		},
+		{
+			"_id": {
+				"$oid": "5bfe1cbe9b95e83384762e2f"
+			},
+			"ending_bus_stop": {
+				"latitude": "36.164393",
+				"stopid": "8ABRONN",
+				"name": "CHARLOTTE AVE \u0026 8TH AVE N WB",
+				"longitude": "-86.785451"
+			},
+			"arrival_datetime": null,
+			"departure_datetime": "10:29:00",
+			"bus_line_id": "100 Oaks",
+			"ending_timetable_entry_index": null,
+			"starting_timetable_entry_index": null,
+			"starting_bus_stop": {
+				"latitude": "36.166590",
+				"stopid": "6THLAFNN",
+				"name": "MUSIC CITY CENTRAL 5TH - BAY 11",
+				"longitude": "-86.781996"
+			}
+		},
+		{
+			"_id": {
+				"$oid": "5bfe1cbe9b95e83384762e30"
+			},
+			"ending_bus_stop": {
+				"latitude": "36.164393",
+				"stopid": "8ABRONN",
+				"name": "CHARLOTTE AVE \u0026 8TH AVE N WB",
+				"longitude": "-86.785451"
+			},
+			"arrival_datetime": null,
+			"departure_datetime": "10:33:00",
+			"bus_line_id": "100 Oaks",
+			"ending_timetable_entry_index": null,
+			"starting_timetable_entry_index": null,
+			"starting_bus_stop": {
+				"latitude": "36.166590",
+				"stopid": "6THLAFNN",
+				"name": "MUSIC CITY CENTRAL 5TH - BAY 11",
+				"longitude": "-86.781996"
+			}
+		},
+		{
+			"_id": {
+				"$oid": "5bfe1cbe9b95e83384762e31"
+			},
+			"ending_bus_stop": {
+				"latitude": "36.164393",
+				"stopid": "8ABRONN",
+				"name": "CHARLOTTE AVE \u0026 8TH AVE N WB",
+				"longitude": "-86.785451"
+			},
+			"arrival_datetime": null,
+			"departure_datetime": "10:30:00",
+			"bus_line_id": "100 Oaks",
+			"ending_timetable_entry_index": null,
+			"starting_timetable_entry_index": null,
+			"starting_bus_stop": {
+				"latitude": "36.166590",
+				"stopid": "8ABRONM",
+				"name": "MUSIC CITY CENTRAL 5TH - BAY 11",
+				"longitude": "-86.781996"
+			}
+		},
+		{
+			"_id": {
+				"$oid": "5bfe1cbe9b95e83384762e32"
+			},
+			"ending_bus_stop": {
+				"latitude": "36.164393",
+				"stopid": "7AVUNISM",
+				"name": "CHARLOTTE AVE \u0026 8TH AVE N WB",
+				"longitude": "-86.785451"
+			},
+			"arrival_datetime": null,
+			"departure_datetime": "10:30:00",
+			"bus_line_id": "100 Oaks",
+			"ending_timetable_entry_index": null,
+			"starting_timetable_entry_index": null,
+			"starting_bus_stop": {
+				"latitude": "36.166590",
+				"stopid": "7AVCOMSN",
+				"name": "MUSIC CITY CENTRAL 5TH - BAY 11",
+				"longitude": "-86.781996"
+			}
+		},
+		{
+			"_id": {
+				"$oid": "5bfe1cbe9b95e83384762e33"
+			},
+			"ending_bus_stop": {
+				"latitude": "36.164393",
+				"stopid": "7AVUNISM",
+				"name": "CHARLOTTE AVE \u0026 8TH AVE N WB",
+				"longitude": "-86.785451"
+			},
+			"arrival_datetime": null,
+			"departure_datetime": "10:33:00",
+			"bus_line_id": "100 Oaks",
+			"ending_timetable_entry_index": null,
+			"starting_timetable_entry_index": null,
+			"starting_bus_stop": {
+				"latitude": "36.166590",
+				"stopid": "7AVCOMSN",
+				"name": "MUSIC CITY CENTRAL 5TH - BAY 11",
+				"longitude": "-86.781996"
+			}
+		},
+		{
+			"_id": {
+				"$oid": "5bfe1cbe9b95e83384762e34"
+			},
+			"ending_bus_stop": {
+				"latitude": "36.164393",
+				"stopid": "7AVCOMSN",
+				"name": "CHARLOTTE AVE \u0026 8TH AVE N WB",
+				"longitude": "-86.785451"
+			},
+			"arrival_datetime": null,
+			"departure_datetime": "10:48:00",
+			"bus_line_id": "100 Oaks",
+			"ending_timetable_entry_index": null,
+			"starting_timetable_entry_index": null,
+			"starting_bus_stop": {
+				"latitude": "36.166590",
+				"stopid": "7AVCHUSN",
+				"name": "MUSIC CITY CENTRAL 5TH - BAY 11",
+				"longitude": "-86.781996"
+			}
+		},
+		{
+			"_id": {
+				"$oid": "5bfe1cbe9b95e83384762e35"
+			},
+			"ending_bus_stop": {
+				"latitude": "36.164393",
+				"stopid": "8ABRONN",
+				"name": "CHARLOTTE AVE \u0026 8TH AVE N WB",
+				"longitude": "-86.785451"
+			},
+			"arrival_datetime": null,
+			"departure_datetime": "10:27:00",
+			"bus_line_id": "100 Oaks",
+			"ending_timetable_entry_index": null,
+			"starting_timetable_entry_index": null,
+			"starting_bus_stop": {
+				"latitude": "36.166590",
+				"stopid": "7AVUNISM",
+				"name": "MUSIC CITY CENTRAL 5TH - BAY 11",
+				"longitude": "-86.781996"
+			}
+		},
+		{
+			"_id": {
+				"$oid": "5bfe1cbe9b95e83384762e36"
+			},
+			"ending_bus_stop": {
+				"latitude": "36.164393",
+				"stopid": "8ABRONM",
+				"name": "CHARLOTTE AVE \u0026 8TH AVE N WB",
+				"longitude": "-86.785451"
+			},
+			"arrival_datetime": null,
+			"departure_datetime": "10:29:00",
+			"bus_line_id": "100 Oaks",
+			"ending_timetable_entry_index": null,
+			"starting_timetable_entry_index": null,
+			"starting_bus_stop": {
+				"latitude": "36.166590",
+				"stopid": "6AOAKSN",
+				"name": "MUSIC CITY CENTRAL 5TH - BAY 11",
+				"longitude": "-86.781996"
+			}
+		},
+		{
+			"_id": {
+				"$oid": "5bfe1cbe9b95e83384762e37"
+			},
+			"ending_bus_stop": {
+				"latitude": "36.164393",
+				"stopid": "7AVUNISM",
+				"name": "CHARLOTTE AVE \u0026 8TH AVE N WB",
+				"longitude": "-86.785451"
+			},
+			"arrival_datetime": null,
+			"departure_datetime": "10:00:00",
+			"bus_line_id": "100 Oaks",
+			"ending_timetable_entry_index": null,
+			"starting_timetable_entry_index": null,
+			"starting_bus_stop": {
+				"latitude": "36.166590",
+				"stopid": "100OAKS",
+				"name": "MUSIC CITY CENTRAL 5TH - BAY 11",
+				"longitude": "-86.781996"
+			}
+		},
+		{
+			"_id": {
+				"$oid": "5bfe1cbe9b95e83384762e38"
+			},
+			"ending_bus_stop": {
+				"latitude": "36.164393",
+				"stopid": "7AVCHUSN",
+				"name": "CHARLOTTE AVE \u0026 8TH AVE N WB",
+				"longitude": "-86.785451"
+			},
+			"arrival_datetime": null,
+			"departure_datetime": "10:54:00",
+			"bus_line_id": "100 Oaks",
+			"ending_timetable_entry_index": null,
+			"starting_timetable_entry_index": null,
+			"starting_bus_stop": {
+				"latitude": "36.166590",
+				"stopid": "6AOAKSN",
+				"name": "MUSIC CITY CENTRAL 5TH - BAY 11",
+				"longitude": "-86.781996"
+			}
+		},
+		{
+			"_id": {
+				"$oid": "5bfe1cbe9b95e83384762e39"
+			},
+			"ending_bus_stop": {
+				"latitude": "36.164393",
+				"stopid": "8ABRONN",
+				"name": "CHARLOTTE AVE \u0026 8TH AVE N WB",
+				"longitude": "-86.785451"
+			},
+			"arrival_datetime": null,
+			"departure_datetime": "10:40:00",
+			"bus_line_id": "100 Oaks",
+			"ending_timetable_entry_index": null,
+			"starting_timetable_entry_index": null,
+			"starting_bus_stop": {
+				"latitude": "36.166590",
+				"stopid": "5AVGAYNN",
+				"name": "MUSIC CITY CENTRAL 5TH - BAY 11",
+				"longitude": "-86.781996"
+			}
+		},
+		{
+			"_id": {
+				"$oid": "5bfe1cbe9b95e83384762e3a"
+			},
+			"ending_bus_stop": {
+				"latitude": "36.164393",
+				"stopid": "7AVCOMSN",
+				"name": "CHARLOTTE AVE \u0026 8TH AVE N WB",
+				"longitude": "-86.785451"
+			},
+			"arrival_datetime": null,
+			"departure_datetime": "10:40:00",
+			"bus_line_id": "100 Oaks",
+			"ending_timetable_entry_index": null,
+			"starting_timetable_entry_index": null,
+			"starting_bus_stop": {
+				"latitude": "36.166590",
+				"stopid": "6THLAFNN",
+				"name": "MUSIC CITY CENTRAL 5TH - BAY 11",
+				"longitude": "-86.781996"
+			}
+		},
+		{
+			"_id": {
+				"$oid": "5bfe1cbe9b95e83384762e3b"
+			},
+			"ending_bus_stop": {
+				"latitude": "36.164393",
+				"stopid": "8ABRONN",
+				"name": "CHARLOTTE AVE \u0026 8TH AVE N WB",
+				"longitude": "-86.785451"
+			},
+			"arrival_datetime": null,
+			"departure_datetime": "10:37:00",
+			"bus_line_id": "100 Oaks",
+			"ending_timetable_entry_index": null,
+			"starting_timetable_entry_index": null,
+			"starting_bus_stop": {
+				"latitude": "36.166590",
+				"stopid": "7AVUNISM",
+				"name": "MUSIC CITY CENTRAL 5TH - BAY 11",
+				"longitude": "-86.781996"
+			}
+		},
+		{
+			"_id": {
+				"$oid": "5bfe1cbe9b95e83384762e3c"
+			},
+			"ending_bus_stop": {
+				"latitude": "36.164393",
+				"stopid": "8ABRONN",
+				"name": "CHARLOTTE AVE \u0026 8TH AVE N WB",
+				"longitude": "-86.785451"
+			},
+			"arrival_datetime": null,
+			"departure_datetime": "10:33:00",
+			"bus_line_id": "100 Oaks",
+			"ending_timetable_entry_index": null,
+			"starting_timetable_entry_index": null,
+			"starting_bus_stop": {
+				"latitude": "36.166590",
+				"stopid": "5AVGAYNN",
+				"name": "MUSIC CITY CENTRAL 5TH - BAY 11",
+				"longitude": "-86.781996"
+			}
+		},
+		{
+			"_id": {
+				"$oid": "5bfe1cbe9b95e83384762e3d"
+			},
+			"ending_bus_stop": {
+				"latitude": "36.164393",
+				"stopid": "8ABRONM",
+				"name": "CHARLOTTE AVE \u0026 8TH AVE N WB",
+				"longitude": "-86.785451"
+			},
+			"arrival_datetime": null,
+			"departure_datetime": "10:06:00",
+			"bus_line_id": "100 Oaks",
+			"ending_timetable_entry_index": null,
+			"starting_timetable_entry_index": null,
+			"starting_bus_stop": {
+				"latitude": "36.166590",
+				"stopid": "7AVUNISM",
+				"name": "MUSIC CITY CENTRAL 5TH - BAY 11",
+				"longitude": "-86.781996"
+			}
+		},
+		{
+			"_id": {
+				"$oid": "5bfe1cbe9b95e83384762e3e"
+			},
+			"ending_bus_stop": {
+				"latitude": "36.164393",
+				"stopid": "6THLAFNN",
+				"name": "CHARLOTTE AVE \u0026 8TH AVE N WB",
+				"longitude": "-86.785451"
+			},
+			"arrival_datetime": null,
+			"departure_datetime": "10:15:00",
+			"bus_line_id": "100 Oaks",
+			"ending_timetable_entry_index": null,
+			"starting_timetable_entry_index": null,
+			"starting_bus_stop": {
+				"latitude": "36.166590",
+				"stopid": "5AVGAYNN",
+				"name": "MUSIC CITY CENTRAL 5TH - BAY 11",
+				"longitude": "-86.781996"
+			}
+		},
+		{
+			"_id": {
+				"$oid": "5bfe1cbe9b95e83384762e3f"
+			},
+			"ending_bus_stop": {
+				"latitude": "36.164393",
+				"stopid": "5AVGAYNN",
+				"name": "CHARLOTTE AVE \u0026 8TH AVE N WB",
+				"longitude": "-86.785451"
+			},
+			"arrival_datetime": null,
+			"departure_datetime": "10:18:00",
+			"bus_line_id": "100 Oaks",
+			"ending_timetable_entry_index": null,
+			"starting_timetable_entry_index": null,
+			"starting_bus_stop": {
+				"latitude": "36.166590",
+				"stopid": "100OAKS",
+				"name": "MUSIC CITY CENTRAL 5TH - BAY 11",
+				"longitude": "-86.781996"
+			}
+		},
+		{
+			"_id": {
+				"$oid": "5bfe1cbe9b95e83384762e40"
+			},
+			"ending_bus_stop": {
+				"latitude": "36.164393",
+				"stopid": "6THLAFNN",
+				"name": "CHARLOTTE AVE \u0026 8TH AVE N WB",
+				"longitude": "-86.785451"
+			},
+			"arrival_datetime": null,
+			"departure_datetime": "10:26:00",
+			"bus_line_id": "100 Oaks",
+			"ending_timetable_entry_index": null,
+			"starting_timetable_entry_index": null,
+			"starting_bus_stop": {
+				"latitude": "36.166590",
+				"stopid": "100OAKS",
+				"name": "MUSIC CITY CENTRAL 5TH - BAY 11",
+				"longitude": "-86.781996"
+			}
+		},
+		{
+			"_id": {
+				"$oid": "5bfe1cbe9b95e83384762e41"
+			},
+			"ending_bus_stop": {
+				"latitude": "36.164393",
+				"stopid": "8ABRONM",
+				"name": "CHARLOTTE AVE \u0026 8TH AVE N WB",
+				"longitude": "-86.785451"
+			},
+			"arrival_datetime": null,
+			"departure_datetime": "10:28:00",
+			"bus_line_id": "100 Oaks",
+			"ending_timetable_entry_index": null,
+			"starting_timetable_entry_index": null,
+			"starting_bus_stop": {
+				"latitude": "36.166590",
+				"stopid": "6AOAKSN",
+				"name": "MUSIC CITY CENTRAL 5TH - BAY 11",
+				"longitude": "-86.781996"
+			}
+
+		}
+	]
+}]

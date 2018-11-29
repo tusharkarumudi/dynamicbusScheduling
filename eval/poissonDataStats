@@ -1,0 +1,17 @@
+79550 17 35
+
+72000 15 30
+
+64800 13 20
+
+61500 12 50
+
+54000 10 45
+
+57600 11 40
+
+50900 9 35
+
+47000 8 30r
+
+mongoexport --db dynamic_bus_scheduling --collection TravelRequestDocuments --out poisson234.json --jsonArray
