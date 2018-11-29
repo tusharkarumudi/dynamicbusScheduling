@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<title><%= title %></title>
+<style>
+    table, th, td {
+        border: 1px solid black;
+        text-align: center;
+    }
+</style>
+</head>
+<body>
+<h2 style="text-align: center">Travel Request Table</h2>
+<div style="align:center">
+    <table width="1000" height="500" align="center">
+        <tr>
+            <th>Bus Stop</th>
+            <th colspan="12">Departure Date Time</th>
+        </tr>
+        <% for(i in travelrequest[0]["travel_request_document"]){%>
+        <tr>
+            <td><%= travelrequest[0]["travel_request_document"][i].starting_bus_stop.stopid%></td>
+            <td><%= travelrequest[0]["travel_request_document"][i].departure_datetime%></td>
+        </tr>
+        <% }%>
+    </table>
+</div>
+</body>
+</html>
