@@ -4,142 +4,212 @@ const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
 const Alexa = require('ask-sdk-core')
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-    res.render('index', { title: 'Bus Scheduling' });
-});
-
-// use 'ask-sdk' if standard SDK module is installed
-////////////////////////////////
-// Code for the handlers here //
-////////////////////////////////
-
-// const LaunchRequestHandler = {
-//     canHandle(handlerInput) {
-//         return handlerInput.requestEnvelope.request.type === 'LaunchRequest';
-//     },
-//     handle(handlerInput) {
-//         const speechText = 'Welcome to Nashville MTA';
-//         return handlerInput.responseBuilder
-//             .speak(speechText)
-//             .reprompt(speechText)
-//             .withSimpleCard('Welcome to Nashville MTA', speechText)
-//             .getResponse();
-//     }
-// };
-// const BusToIntentHandler = {
-//
-//     canHandle(handlerInput) {
-//         return handlerInput.requestEnvelope.request.type === 'IntentRequest'
-//             && handlerInput.requestEnvelope.request.intent.name === 'BusTo' ;
-//     },
-//     handle(handlerInput) {
-//         return handlebusRequest(handlerInput);
-//         /* return handlerInput.responseBuilder
-//              .speak(speechText)
-//              .withSimpleCard('Hello Tushar', speechText)
-//              .getResponse();*/
-//     }
-// };
-// const HelpIntentHandler = {
-//     canHandle(handlerInput) {
-//         return handlerInput.requestEnvelope.request.type === 'IntentRequest'
-//             && handlerInput.requestEnvelope.request.intent.name === 'AMAZON.HelpIntent';
-//     },
-//     handle(handlerInput) {
-//         const speechText = 'You can put requests for a bus';
-//         return handlerInput.responseBuilder
-//             .speak(speechText)
-//             .reprompt(speechText)
-//             .withSimpleCard('Bus from x to y', speechText)
-//             .getResponse();
-//     }
-// };
-// const CancelAndStopIntentHandler = {
-//     canHandle(handlerInput) {
-//         return handlerInput.requestEnvelope.request.type === 'IntentRequest'
-//             && (handlerInput.requestEnvelope.request.intent.name === 'AMAZON.CancelIntent'
-//                 || handlerInput.requestEnvelope.request.intent.name === 'AMAZON.StopIntent');
-//     },
-//     handle(handlerInput) {
-//         const speechText = 'Goodbye!';
-//         return handlerInput.responseBuilder
-//             .speak(speechText)
-//             .withSimpleCard('Good bye', speechText)
-//             .getResponse();
-//     }
-// };
-// const SessionEndedRequestHandler = {
-//     canHandle(handlerInput) {
-//         return handlerInput.requestEnvelope.request.type === 'SessionEndedRequest';
-//     },
-//     handle(handlerInput) {
-//         //any cleanup logic goes here
-//         return handlerInput.responseBuilder.getResponse();
-//     }
-// };
-// const ErrorHandler = {
-//     canHandle() {
-//         return true;
-//     },
-//     handle(handlerInput, error) {
-//         console.log(`Error handled: ${error.message}`);
-//         return handlerInput.responseBuilder
-//             .speak('Sorry, I can\'t understand the command. Please say again.')
-//             .reprompt('Sorry, I can\'t understand the command. Please say again.')
-//             .getResponse();
-//     },
-// };
-//
-// function handlebusRequest(handlerInput){
-//     const speechText = 'Your Request has been accepted';
-//     const { requestEnvelope, attributesManager, responseBuilder } = handlerInput;
-//     const { intent } = requestEnvelope.request;
-//     console.log("Starting point: "+ intent.slots.Startingpoint.value);
-//     var dateTime = require('node-datetime');
-//     var dt = dateTime.create();
-//     var formatted = dt.format('H:M:S');
-//     console.log(formatted);
-//     var MongoClient = require('mongodb').MongoClient;
-//     MongoClient.connect("mongodb://localhost:27017/MyDb", function (err, db) {
-//         db.collection('travelRequest', function (err, collection) {
-//             collection.insert({ clientId: 1, lineId: 'Steve', startingbusstopname: 'Jobs', });
-//
-//         });
-//     });
-//
-//     return handlerInput.responseBuilder
-//         .speak(speechText)
-//         .getResponse();
-// }
-//
-// exports.handler = Alexa.SkillBuilders.custom()
-//     .addRequestHandlers(LaunchRequestHandler,
-//         BusToIntentHandler,
-//         HelpIntentHandler,
-//         CancelAndStopIntentHandler,
-//         SessionEndedRequestHandler).lambda();
-
-var BusStop, timetablecollectiondata;
 // Connection URL
 const url = 'mongodb://localhost:27017';
 
 // Database Name
 const dbName = 'Dynamic_Bus_Scheduling';
 
+/* GET home page. */
+router.get('/', function(req, res, next) {
+    res.render('index', { title: 'Nashville Metropolitan Transit Authority' });
+});
+
+router.get('/timetable', function(req, res, next) {
+    MongoClient.connect(url, function(err, client) {
+
+        //Connecting to Timetable document
+        var col = client.db(dbName).collection('Timetable');
+        col.find().toArray(function(err, items) {
+            res.render('timetable', { title: 'Nashville Metropolitan Transit Authority', timetable: items});
+        });
+        client.close();
+        });
+});
+
+router.get('/travelrequest', function(req, res, next) {
+    MongoClient.connect(url, function(err, client) {
+
+        //Connecting to Timetable document
+        var trd = client.db(dbName).collection('TravelRequestDocuments');
+        trd.find().toArray(function(err, items) {
+            res.render('travelrequest', { title: 'Nashville Metropolitan Transit Authority', travelrequest: items});
+        });
+        client.close();
+    });
+});
+
+router.get('/dynamicbusdata', function(req, res, next) {
+    MongoClient.connect(url, function(err, client) {
+
+        //Connecting to Timetable document
+        var dbd = client.db(dbName).collection('DynamicBusData');
+        dbd.find().toArray(function(err, items) {
+            res.render('dynamicbusdata', { title: 'Nashville Metropolitan Transit Authority', dynamicbusdata: items});
+        });
+        client.close();
+    });
+});
+
+/*
+//Alexa code starts here
+let skill;
+
+const LaunchRequestHandler = {
+    canHandle(handlerInput) {
+        return handlerInput.requestEnvelope.request.type === 'LaunchRequest';
+    },
+    handle(handlerInput) {
+        const speechText = 'Welcome to Nashville MTA';
+        return handlerInput.responseBuilder
+            .speak(speechText)
+            .reprompt(speechText)
+            .withSimpleCard('Welcome to Nashville MTA', speechText)
+            .getResponse();
+    }
+};
+const BusToIntentHandler = {
+
+    canHandle(handlerInput) {
+        return handlerInput.requestEnvelope.request.type === 'IntentRequest'
+            && handlerInput.requestEnvelope.request.intent.name === 'BusTo' ;
+    },
+    handle(handlerInput) {
+        return handlebusRequest(handlerInput);
+    }
+};
+const HelpIntentHandler = {
+    canHandle(handlerInput) {
+        return handlerInput.requestEnvelope.request.type === 'IntentRequest'
+            && handlerInput.requestEnvelope.request.intent.name === 'AMAZON.HelpIntent';
+    },
+    handle(handlerInput) {
+        const speechText = 'You can put requests for a bus';
+        return handlerInput.responseBuilder
+            .speak(speechText)
+            .reprompt(speechText)
+            .withSimpleCard('Bus from x to y', speechText)
+            .getResponse();
+    }
+};
+const CancelAndStopIntentHandler = {
+    canHandle(handlerInput) {
+        return handlerInput.requestEnvelope.request.type === 'IntentRequest'
+            && (handlerInput.requestEnvelope.request.intent.name === 'AMAZON.CancelIntent'
+                || handlerInput.requestEnvelope.request.intent.name === 'AMAZON.StopIntent');
+    },
+    handle(handlerInput) {
+        const speechText = 'Goodbye!';
+        return handlerInput.responseBuilder
+            .speak(speechText)
+            .withSimpleCard('Good bye', speechText)
+            .getResponse();
+    }
+};
+const SessionEndedRequestHandler = {
+    canHandle(handlerInput) {
+        return handlerInput.requestEnvelope.request.type === 'SessionEndedRequest';
+    },
+    handle(handlerInput) {
+        //any cleanup logic goes here
+        return handlerInput.responseBuilder.getResponse();
+    }
+};
+const ErrorHandler = {
+    canHandle() {
+        return true;
+    },
+    handle(handlerInput, error) {
+        console.log(`Error handled: ${error.message}`);
+        return handlerInput.responseBuilder
+            .speak('Sorry, I can\'t understand the command. Please say again.')
+            .reprompt('Sorry, I can\'t understand the command. Please say again.')
+            .getResponse();
+    },
+};
+
+function handlebusRequest(handlerInput) {
+    const speechText = 'Your Request has been accepted';
+    const {requestEnvelope, attributesManager, responseBuilder} = handlerInput;
+    const {intent} = requestEnvelope.request;
+    var dateTime = require('node-datetime');
+    var dt = dateTime.create();
+    var formatted = dt.format('H:M:S');
+    //console.log("starting value "+intent.slots.Startingpoint.value);
+    //console.log("Ending Value "+intent.slots.Endingpoint.value);
+    var MongoClient = require('mongodb').MongoClient;
+    var slot = intent.slots.Startingpoint.value;
+    var splitted = slot.split(" to ");
+    var startingpoint = splitted[0].toUpperCase();
+    var endingpoint = splitted[1].toUpperCase();
+    startingpoint = ('"' + startingpoint + '"');
+    endingpoint = ('"' + endingpoint + '"');
+    var starting_busstop = null;
+    var ending_busstop = null;
+    //console.log(intent.slots.Startingpoint.value);
+    MongoClient.connect("mongodb://127.0.0.1:27017", function (err,db) {
+        var dbo = db.db("Dynamic_Bus_Scheduling");
+        // console.log("starrrrt"+startingpoint);
+        const cols = db.db("Dynamic_Bus_Scheduling").collection('BusStopDocuments');
+        cols.find({"name":"100 OAKS MALL"}).toArray(function(err, items) {
+            starting_busstop=items[0];
+            //console.log(items[0]);
+            cols.find({"name":"7TH AVE & UNION ST SB"}).toArray(function(err, items) {
+                ending_busstop=items[0];
+                dbo.collection('TravelRequestDocuments', function (err, collection) {
+                    //console.log("starting_busstop"+starting_busstop);
+                    collection.insert({
+                        "travel_request_document": [{
+                            'bus_line_id': "100 Oaks",
+                            'starting_bus_stop': starting_busstop,
+                            'ending_bus_stop': ending_busstop,
+                            'departure_datetime': formatted,
+                            'arrival_datetime': "None",
+                            'starting_timetable_entry_index': "None",
+                            'ending_timetable_entry_index': "None"
+                        }]
+                    });
+            });
+        });
+        });
+    });
+    return handlerInput.responseBuilder
+        .speak(speechText)
+        .getResponse();
+}
+//app.use(bodyParser.json());
+router.post("/", function(req, res){
+    if(!skill){
+        skill = Alexa.SkillBuilders.custom()
+            .addRequestHandlers(
+                LaunchRequestHandler,
+                BusToIntentHandler
+            )
+            .create();
+    }
+
+    skill.invoke(req.body)
+        .then(function(responseBody) {
+            res.json(responseBody);
+        })
+        .catch(function(error) {
+            console.log(error);
+            res.status(500).send('Error during the request');
+        });
+
+});
+
+// app.listen(3000, function () {
+//     console.log('Development endpoint listening on port 3000!');
+// });
+*/
+
+
+//Algorithm Logic starts here
+
+var BusStop, timetablecollectiondata;
+
 MongoClient.connect(url, function(err, client) {
-
-    //create empty array of waiting times
-    //call travel request get all data
-
-    //for each travel request
-    //take its departure time and bus stop
-    //get arrival times of that bus stop from Timetable
-    //calculate minimum waiting time
-    //push minimum waiting time into array.
-
-    //calculate mean of waiting times.
-    //compare this mean with the threshold.
 
     //Connecting to Timetable document
     const col = client.db(dbName).collection('Timetable');
@@ -157,6 +227,9 @@ MongoClient.connect(url, function(err, client) {
         console.log("number of req");
         console.log(totalNumberOfRequests);
         var totalWaitingTime = 0;
+
+        var totalWaitingTime1 = 0;
+
         var BusStopArrayEval = [];
         var RequestedArrivingTimeArrayEval = [];
 
@@ -168,15 +241,17 @@ MongoClient.connect(url, function(err, client) {
             BusStopArrayEval.push(BusStop);
             RequestedArrivingTimeArrayEval.push(RequestedArrivingTime);
 
-            console.log("bus stop is:")
-            console.log(BusStop);
+            // console.log("bus stop is:")
+            // console.log(BusStop);
             var ArrivingTimes = GetArrivingTimes(BusStop)
             //console.log(items[0]["travel_request_document"][i].departure_datetime)
-            console.log("minimum time of minimum")
+           // console.log("minimum time of minimum")
             //console.log(ArrivingTimes)
             var minimumTime = GetMinimumWaitingTimeForTravelRequest(RequestedArrivingTime, ArrivingTimes)
-            // console.log(minimumTime)
+            //console.log(minimumTime)
+            if (typeof minimumTime != 'undefined')
             totalWaitingTime = totalWaitingTime+minimumTime;
+
         }
         client.close();
         console.log("total waiting time is")
@@ -185,7 +260,7 @@ MongoClient.connect(url, function(err, client) {
         console.log(AverageWaitingTime);
 
 
-        if(AverageWaitingTime >= 1500) {
+        if(AverageWaitingTime >= 900) {
             console.log("scheduling a bus");
 
             var currTime = new Date();
@@ -196,7 +271,11 @@ MongoClient.connect(url, function(err, client) {
             var newHour = currTime.getHours();
             var NewTimes = dynamicBusData(newHour,"30");
             //calculate new waiting times.
-            CalculateNewWaitingTime(NewTimes,BusStopArrayEval,RequestedArrivingTimeArrayEval);
+            var newTimeFromMethod = CalculateNewWaitingTime(NewTimes,BusStopArrayEval,RequestedArrivingTimeArrayEval);
+            console.log("old average wait time")
+            console.log(AverageWaitingTime/60)
+            console.log("new average wait time")
+            console.log((newTimeFromMethod/totalNumberOfRequests)/60)
         }
         else {
             console.log("Bus is not Scheduled")
@@ -216,8 +295,8 @@ function GetArrivingTimes(busStop) {
 
         if(timetablecollectiondata[0]["timetable"][i].busstop == busStop)
         {
-            console.log("timetable ka busstop");
-            console.log(timetablecollectiondata[0]["timetable"][i].busstop)
+            // console.log("timetable ka busstop");
+            // console.log(timetablecollectiondata[0]["timetable"][i].busstop)
             arr_array = timetablecollectiondata[0]["timetable"][i].arr_time;
             break
             //console.log(arr_array[1])
@@ -248,16 +327,18 @@ function GetMinimumWaitingTimeForTravelRequest(RequestedArrivingTime, ArrivingTi
 
     for(var arrivingTime in ArrivingTimes)
     {
+
         var ArrivingTimesInSeconds = GetSecondsFromTime(ArrivingTimes[arrivingTime]);
+        if(RequestedArrivingTimeInSeconds<=ArrivingTimesInSeconds)
         WaitingTimes.push(Math.abs(ArrivingTimesInSeconds-RequestedArrivingTimeInSeconds));
     }
     var MinimumWaitingTime = FindMinimumWaitingTimes(WaitingTimes);
-    console.log("requested arriving times is:");
-    console.log(RequestedArrivingTime);
-    console.log("all ariving times are:");
-    console.log(ArrivingTimes);
-    console.log("minimum time is:");
-    console.log(MinimumWaitingTime/60);
+            // console.log("requested arriving times is:");
+            // console.log(RequestedArrivingTime);
+            // console.log("all ariving times are:");
+            // console.log(ArrivingTimes);
+            // console.log("minimum time is:");
+            // console.log(MinimumWaitingTime/60);
     return MinimumWaitingTime;
 }
 
@@ -285,20 +366,31 @@ function FindMinimumWaitingTimes(WaitingTimes)
 
 function CalculateNewWaitingTime(NewTimes,BusStopArrayEval,RequestedArrivingTimeArrayEval)
 {
-  var NewArrivingTimes = NewTimes[0].NewArrivingTimes;
-  var routes = NewTimes[0].route;
-  var NewWaitingTime = 0;
-  for(var i in RequestedArrivingTimeArrayEval)
-  {
-    var indexOfNewArrivingTimes = routes.indexOf(BusStopArrayEval[i]);
-    NewWaitingTime = NewWaitingTime + Math.abs(GetSecondsFromTime(NewArrivingTimes[indexOfNewArrivingTimes])-GetSecondsFromTime(RequestedArrivingTimeArrayEval[i]));
-  }
+    // console.log("inside calculateNewWaitingTime")
+    // console.log("newTimes is:")
+    // console.log(NewTimes)
+    // console.log("BusStopArrayEval is:")
+    // console.log(BusStopArrayEval)
+    console.log("RequestedArrivingTimeArrayEval is:")
+    console.log(RequestedArrivingTimeArrayEval)
+
+    var NewArrivingTimes = NewTimes[0].NewArrivingTimes;
+    var routes = NewTimes[0].route;
+    var NewWaitingTime = 0;
+    for(var i in RequestedArrivingTimeArrayEval)
+    {
+        console.log("printing i");
+        console.log(i);
+        var indexOfNewArrivingTimes = routes.indexOf(BusStopArrayEval[i]);
+        NewWaitingTime = NewWaitingTime + Math.abs(GetSecondsFromTime(NewArrivingTimes[indexOfNewArrivingTimes])-GetSecondsFromTime(RequestedArrivingTimeArrayEval[i]));
+    }
+    return NewWaitingTime;
 }
 
 function dynamicBusData(NewStartHour, NewStartMinute)
 {
-    // var NewStartHour = "9";
-    // var NewStartMinute = "30"
+     var NewStartHour = "15";
+    var NewStartMinute = "15"
     //var stopArray = ["100OAKS", "5AVGAYNN", "6AOAKSN", "6THLAFNN", "7AVCHUSN", "7AVCOMSN", "7AVUNISM", "8ABRONM", "8ABRONN", "8ABROSN"]
     var timeDiff = ["0", "15", "5", "5", "5", "5", "10", "11", "4", "15"]
     var template = [
@@ -343,6 +435,9 @@ function dynamicBusData(NewStartHour, NewStartMinute)
             client.close()
         });
     });
+
+    //returning template document
+    return template;
 }
 
 module.exports = router;
