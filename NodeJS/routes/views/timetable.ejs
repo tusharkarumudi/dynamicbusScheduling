@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<title><%= title %></title>
+<style>
+    table, th, td {
+        border: 1px solid black;
+        text-align: center;
+    }
+</style>
+</head>
+<body>
+<h2 style="text-align: center">Static Bus Time Table</h2>
+<div style="align:center">
+<table width="1000" height="500" align="center">
+    <tr>
+        <th>Bus Stop</th>
+        <th colspan="12">Arrival Time</th>
+    </tr>
+    <% for(i in timetable[0]["timetable"]){%>
+        <tr>
+            <td><%= timetable[0]["timetable"][i].busstop%></td>
+                <%for(j in timetable[0]["timetable"][i].arr_time){%>
+                <td><%= timetable[0]["timetable"][i].arr_time[j]%></td>
+                <%}%>
+        </tr>
+    <% }%>
+</table>
+</div>
+</body>
+</html>

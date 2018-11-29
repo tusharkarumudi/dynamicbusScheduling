@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<title><%= title %></title>
+<style>
+    table, th, td {
+        border: 1px solid black;
+        text-align: center;
+    }
+</style>
+</head>
+<body>
+<h2 style="text-align: center">Travel Request Table</h2>
+<div style="align:center">
+    <table width="120" height="70" align="center">
+        <tr>
+            <th>Bus Stop</th>
+            <th colspan="20">New Arrival Time</th>
+        </tr>
+        <%for(i in dynamicbusdata){%>
+        <tr>
+            <% for(j in dynamicbusdata[i].route){%>
+            <td><%= dynamicbusdata[i].route[j]%></td>
+            <td><%= dynamicbusdata[i].NewArrivingTimes[j]%></td>
+            <%}%>
+        </tr>
+        <%}%>
+    </table>
+</div>
+</body>
+</html>
