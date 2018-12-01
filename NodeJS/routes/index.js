@@ -103,10 +103,10 @@ function handlebusRequest(handlerInput) {
         var dbo = db.db("Dynamic_Bus_Scheduling");
         // console.log("starrrrt"+startingpoint);
         const cols = db.db("Dynamic_Bus_Scheduling").collection('BusStopDocuments');
-        cols.find({"name":"100 OAKS MALL"}).toArray(function(err, items) {
+        cols.find({"name":startingpoint}).toArray(function(err, items) {
             starting_busstop=items[0];
             //console.log(items[0]);
-            cols.find({"name":"7TH AVE & UNION ST SB"}).toArray(function(err, items) {
+            cols.find({"name":endingpoint}).toArray(function(err, items) {
                 ending_busstop=items[0];
                 dbo.collection('TravelRequestDocuments', function (err, collection) {
                     //console.log("starting_busstop"+starting_busstop);
