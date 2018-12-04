@@ -243,8 +243,7 @@ function CalculateNewWaitingTime(NewTimes,BusStopArrayEval,RequestedArrivingTime
 
 function dynamicBusData(NewStartHour, NewStartMinute)
 {
-    var NewStartHour = "15";
-    var NewStartMinute = "15"
+   
     //var stopArray = ["100OAKS", "5AVGAYNN", "6AOAKSN", "6THLAFNN", "7AVCHUSN", "7AVCOMSN", "7AVUNISM", "8ABRONM", "8ABRONN", "8ABROSN"]
     var timeDiff = ["0", "15", "5", "5", "5", "5", "10", "11", "4", "15"]
     var template = [
